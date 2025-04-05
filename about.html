@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>This is not a proxy</title>
+<style>
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+
+button {
+padding: 10px 20px;
+font-size: 16px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<button id="openButton">OPEN "THIS IS NOT A PROXY" IN NEW WINDOW</button>
+
+<script>
+const openButton = document.getElementById('openButton');
+
+openButton.addEventListener('click', () => {
+window.open('index.html', '_blank'); //Opens index.html in a new window/tab.
+});
+</script>
+
+</body>
+</html>
