@@ -2,14 +2,18 @@
 <html>
 <head>
 <title>This is not a proxy</title>
-<script>
-window.onload = function() {
-window.location.href = "index.html";
-};
-</script>
 </head>
 <body>
-<!-- This content will be briefly visible before redirect -->
-Redirecting...
+
+<button onclick="openIndexInIframe()">Open index.html in new tab</button>
+
+<script>
+function openIndexInIframe() {
+let newWindow = window.open('', '_blank');
+newWindow.document.write('<html><head><title>index.html in iframe</title></head><body><iframe src="index.html" width="800" height="600"></iframe></body></html>');
+newWindow.document.close();
+}
+</script>
+
 </body>
 </html>
