@@ -1,12 +1,19 @@
-```html
 <!DOCTYPE html>
 <html>
 <head>
-<title>Open blank.html in a new window</title>
+<title>This is not a proxy</title>
 </head>
 <body>
 
-<a href="blank.html" target="_blank">Open blank.html</a>
+<button onclick="openIndexInIframe()">OPEN "THIS IS NOT A PROXY" IN A NEW TAB</button>
+
+<script>
+function openIndexInIframe() {
+let newWindow = window.open('', '_blank');
+newWindow.document.write('<html><head><title>index.html in iframe</title></head><body><iframe src="index.html" width="800" height="600"></iframe></body></html>');
+newWindow.document.close();
+}
+</script>
 
 </body>
 </html>
