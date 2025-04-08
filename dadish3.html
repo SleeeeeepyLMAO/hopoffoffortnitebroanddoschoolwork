@@ -1,96 +1,1719 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Dadish 3 Fullscreen</title>
-<style>
-body {
-margin: 0;
-overflow: hidden; /* Hide scrollbars in fullscreen */
-}
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta property="og:title" content="arsenic" />
+  <meta property="og:image" content="/assets/favicon.png" />
+  <meta property="og:description" content="a privacy focused, feature rich, web proxy built in Node.js." />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>arsenic</title>
+  <link rel="icon" href="./assets/favicon.png" type="image/xcon" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/themes.css" />
 
-#container {
-width: 100%;
-height: 100%;
-position: relative;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&amp;family=Geist:wght@100..900&amp;display=swap" rel="stylesheet" />
 
-#iframe-container {
-width: 100%;
-height: 100%;
-position: relative;
-}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-#game-iframe {
-width: 100%;
-height: 100%;
-border: none;
-position: absolute;
-top: 0;
-left: 0;
-}
+  <!-- Google tag (gtag.js) -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-V45JNZYC0T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-#fullscreen-button {
-position: absolute;
-top: 10px;
-right: 10px;
-z-index: 10;
-background-color: blue;
-border: none;
-color: white;
-padding: 10px 20px;
-font-size: 16px;
-cursor: pointer;
-}
+    gtag('config', 'G-V45JNZYC0T');
+  </script>
+<style>:root{--swal2-container-padding: 0.625em;--swal2-backdrop: rgba(0, 0, 0, 0.4);--swal2-width: 32em;--swal2-padding: 0 0 1.25em;--swal2-border: none;--swal2-border-radius: 0.3125rem;--swal2-background: white;--swal2-color: #545454;--swal2-footer-border-color: #eee;--swal2-show-animation: swal2-show 0.3s;--swal2-hide-animation: swal2-hide 0.15s forwards;--swal2-input-background: transparent;--swal2-progress-step-background: #add8e6;--swal2-validation-message-background: #f0f0f0;--swal2-validation-message-color: #666;--swal2-close-button-position: initial;--swal2-close-button-inset: auto;--swal2-close-button-font-size: 2.5em;--swal2-close-button-color: #ccc}[data-swal2-theme=dark]{--swal2-dark-theme-black: #19191a;--swal2-dark-theme-white: #e1e1e1;--swal2-background: var(--swal2-dark-theme-black);--swal2-color: var(--swal2-dark-theme-white);--swal2-footer-border-color: #555;--swal2-input-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);--swal2-validation-message-background: color-mix( in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10% );--swal2-validation-message-color: var(--swal2-dark-theme-white)}@media(prefers-color-scheme: dark){[data-swal2-theme=auto]{--swal2-dark-theme-black: #19191a;--swal2-dark-theme-white: #e1e1e1;--swal2-background: var(--swal2-dark-theme-black);--swal2-color: var(--swal2-dark-theme-white);--swal2-footer-border-color: #555;--swal2-input-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);--swal2-validation-message-background: color-mix( in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10% );--swal2-validation-message-color: var(--swal2-dark-theme-white)}}body.swal2-shown:not(.swal2-no-backdrop,.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px var(--swal2-backdrop)}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}@media print{body.swal2-shown:not(.swal2-no-backdrop,.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop,.swal2-toast-shown)&gt;[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop,.swal2-toast-shown) .swal2-container{position:static !important}}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:"top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:var(--swal2-container-padding);overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:var(--swal2-backdrop)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start&gt;.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top&gt;.swal2-popup{grid-column:2;place-self:start center}div:where(.swal2-container).swal2-top-end&gt;.swal2-popup,div:where(.swal2-container).swal2-top-right&gt;.swal2-popup{grid-column:3;place-self:start end}div:where(.swal2-container).swal2-center-start&gt;.swal2-popup,div:where(.swal2-container).swal2-center-left&gt;.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center&gt;.swal2-popup{grid-column:2;grid-row:2;place-self:center center}div:where(.swal2-container).swal2-center-end&gt;.swal2-popup,div:where(.swal2-container).swal2-center-right&gt;.swal2-popup{grid-column:3;grid-row:2;place-self:center end}div:where(.swal2-container).swal2-bottom-start&gt;.swal2-popup,div:where(.swal2-container).swal2-bottom-left&gt;.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom&gt;.swal2-popup{grid-column:2;grid-row:3;place-self:end center}div:where(.swal2-container).swal2-bottom-end&gt;.swal2-popup,div:where(.swal2-container).swal2-bottom-right&gt;.swal2-popup{grid-column:3;grid-row:3;place-self:end end}div:where(.swal2-container).swal2-grow-row&gt;.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen&gt;.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column&gt;.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen&gt;.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:var(--swal2-width);max-width:100%;padding:var(--swal2-padding);border:var(--swal2-border);border-radius:var(--swal2-border-radius);background:var(--swal2-background);color:var(--swal2-color);font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable{cursor:grab}div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable div:where(.swal2-icon){cursor:grab}div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging{cursor:grabbing}div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging div:where(.swal2-icon){cursor:grabbing}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word;cursor:initial}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm){border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm):focus-visible{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny){border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny):focus-visible{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel){border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel):focus-visible{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus-visible{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus-visible{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid var(--swal2-footer-border-color);color:inherit;font-size:1em;text-align:center;cursor:initial}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:var(--swal2-border-radius);border-bottom-left-radius:var(--swal2-border-radius)}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em;cursor:initial}div:where(.swal2-container) button:where(.swal2-close){position:var(--swal2-close-button-position);inset:var(--swal2-close-button-inset);z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:var(--swal2-border-radius);background:rgba(0,0,0,0);color:var(--swal2-close-button-color);font-family:monospace;font-size:var(--swal2-close-button-font-size);cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus-visible{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-html-container){z-index:1;justify-content:center;margin:0;padding:1em 1.6em .3em;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word;cursor:initial}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:var(--swal2-input-background);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:var(--swal2-background)}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:var(--swal2-input-background);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:var(--swal2-input-background);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:var(--swal2-background);color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:var(--swal2-validation-message-background);color:var(--swal2-validation-message-color);font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:var(--swal2-progress-step-background);color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:var(--swal2-progress-step-background)}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#f8bb86;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#3fc3ee;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#87adbd;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:var(--swal2-show-animation)}.swal2-hide{animation:var(--swal2-hide-animation)}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:var(--swal2-background);box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-toast&gt;*{grid-column:2}.swal2-toast h2:where(.swal2-title){margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-toast .swal2-loading{justify-content:center}.swal2-toast input:where(.swal2-input){height:2em;margin:.5em;font-size:1em}.swal2-toast .swal2-validation-message{font-size:1em}.swal2-toast div:where(.swal2-footer){margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-toast button:where(.swal2-close){grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-toast div:where(.swal2-html-container){margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-toast div:where(.swal2-html-container):empty{padding:0}.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-toast div:where(.swal2-actions){justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-toast button:where(.swal2-styled){margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;border-radius:50%}.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}</style><script src="./js/animation.js"></script></head>
 
-#error-message {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-color: white;
-font-size: 20px;
-z-index: 10; /* Ensure it's on top */
-display: none; /* Hidden by default */
-}
-</style>
-</head>
-<body>
-<div id="container">
-<div id="iframe-container">
-<iframe id="game-iframe" src="about:blank" onerror="handleError()"></iframe>
-<button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-<div id="error-message">Error loading game. Please check your internet connection.</div>
-</div>
-</div>
+<body style="--scroll: 1;">
+  <div class="container" id="container">
+    <div id="particles-js"></div>
+    <nav>
+      <div class="top">
+        <a href="/" class="logo">
+          <img src="./assets/favicon.png" alt="nobelium" />
+          <h2 class="logo-name">arsenic</h2>
+          <h6>v1.4</h6>
+        </a>
+        <div class="tabs">
+          <button class="tab-btn" id="home-tab" onclick="openPage('home-page')">
+            <div class="left">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="house" class="lucide lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <p>Home</p>
+              <p class="category"></p>
+            </div>
+          </button>
+          <button class="tab-btn" id="game-tab" onclick="openPage('game-page')">
+            <div class="left">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="gamepad-2" class="lucide lucide-gamepad-2"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+              <p>Games</p>
+              <p class="category"></p>
+            </div>
+          </button>
+          <button class="tab-btn" id="game-tab" onclick="openPage('proxy-page')">
+            <div class="left">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="server" class="lucide lucide-server"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+              <p>Proxy</p>
+              <p class="category"></p>
+            </div>
+          </button>
+          <button class="tab-btn" id="game-tab" onclick="openPage('ai-page')">
+            <div class="left">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bot" class="lucide lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+              <p>AI</p>
+              <p class="category"></p>
+            </div>
+          </button>
+          <hr />
+          <div id="tabs-container"><button class="tab-btn" id="dadish-3-tab"><div class="left"><i class="bi bi-controller"></i><p>Dadish 3</p></div> <button class="close-tab" onclick="closeTab('dadish-3')"><i class="bi bi-x-lg"></i></button></button></div>
+        </div>
+      </div>
+      <div class="sidebar-bottom">
+        <!--<div class="banner">
+          🇺🇦 We stand with Ukraine.
+        </div>-->
+        <div class="bottom-nav">
+          <button class="action-btn" onclick="openPage('settings-page')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="settings" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+          <button class="action-btn refresh" onclick="refresh()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="rotate-cw" class="lucide lucide-rotate-cw"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+          </button>
+          <button class="action-btn" onclick="inspect()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="code" class="lucide lucide-code"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </button>
+          <button class="action-btn" onclick="fullscreen()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="maximize" class="lucide lucide-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content" id="main-content">
+      <div class="page" id="home-page" style="display: none;">
+        <div class="home-page-container">
+          <div class="home-page-left">
+            <h1 class="welcome">Stay connected.</h1>
+            <p style="margin: 15px 0px; font-weight: 600;">arsenic is a free open-source website offering many services
+              in one place.</p>
+            <div class="buttons">
+              <button class="start" role="button" onclick="openPage('proxy-page')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="rocket" class="lucide lucide-rocket"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+                Start Your Journey
+              </button>
+            </div>
+          </div>
+          <div class="home-page-right">
+            <div class="partners">
+              <b>Partners</b>
+              <a href="https://moonlight.silvereen.net/" target="_blank">
+                <div class="partner">
+                  <img src="./assets/partners/moonlight.png" alt="" class="partner-logo" />
+                  Moonlight
+                </div>
+              </a>
+              <a href="https://edu.ajh.college/" target="_blank">
+                <div class="partner">
+                  <img src="./assets/partners/ajh.png" alt="" class="partner-logo" />
+                  Ajh's Vault
+                </div>
+              </a>
+              <a href="https://waves.macha.icu/" target="_blank">
+                <div class="partner">
+                  <img src="./assets/partners/waves.png" alt="" class="partner-logo" />
+                  Waves
+                </div>
+              </a>
+              <a href="https://petezahgames.com/" target="_blank">
+                <div class="partner">
+                  <img src="./assets/partners/petezah.png" alt="" class="partner-logo" />
+                  PeteZah Games
+                </div>
+              </a>
+              <a href="https://burst.locks.sibmed.org.ru/" target="_blank">
+                <div class="partner">
+                  <img src="./assets/partners/cloudburst.png" alt="" class="partner-logo" />
+                  Cloudburst
+                </div>
+              </a>
+            </div>
+            <div class="resources">
+              <b>Resources</b>
+              <a href="https://discord.gg/VA2JXq52j4" target="_blank">
+                <i class="bi bi-discord"></i>
+                Discord
+              </a>
+              <a href="./yt.html" target="_blank">
+                <i class="bi bi-youtube"></i>
+                YouTube Unblocker
+              </a>
+              <a href="https://docs.arsenic.smartfoloo.space/" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="book-text" class="lucide lucide-book-text"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M8 11h8"/><path d="M8 7h6"/></svg>
+                Documentation
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page" id="game-page" style="display: none;">
+        <h1>Games</h1>
+        <p></p>
+        <div class="input-container">
+          <div class="game-search-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="searchInput" class="game-search" placeholder="Search for a game..." />
+          </div>
+          <div id="category-buttons">
+            <button class="category-btn" data-category="all">All</button>
+            <button class="category-btn" data-category="2-player">2-Player</button>
+            <button class="category-btn" data-category="action">Action</button>
+            <button class="category-btn" data-category="adventure">Adventure</button>
+            <button class="category-btn" data-category="arcade">Arcade</button>
+            <button class="category-btn" data-category="classic">Classic</button>
+            <button class="category-btn" data-category="clicker">Clicker</button>
+            <button class="category-btn" data-category="driving">Driving</button>
+            <button class="category-btn" data-category="flash">Flash</button>
+            <button class="category-btn" data-category="idle">Idle</button>
+            <button class="category-btn" data-category="luck">Luck</button>
+            <button class="category-btn" data-category="management">Management</button>
+            <button class="category-btn" data-category="merge">Merge</button>
+            <button class="category-btn" data-category="multiplayer">Multiplayer</button>
+            <button class="category-btn" data-category="platformer">Platformer</button>
+            <button class="category-btn" data-category="puzzle">Puzzle</button>
+            <button class="category-btn" data-category="shooter">Shooter</button>
+            <button class="category-btn" data-category="sports">Sports</button>
+          </div>
+        </div>
+        <div class="game-list" id="game-list">
+        <a onclick="addGameTab('sky-riders', 'Sky Riders')" class="game-btn hidden show loaded" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/skyriders.png" alt="Sky Riders" loading="lazy" />
+          <div class="content">
+            <p class="title">Sky Riders</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('doors-online', 'Doors Online')" class="game-btn hidden show loaded" data-categories="action,adventure" style="display: none;">
+          <img src="./assets/images/doorsonline.png" alt="Doors Online" loading="lazy" />
+          <div class="content">
+            <p class="title">Doors Online</p>
+            <p class="category">#action #adventure</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('yohoho-io', 'Yohoho.io')" class="game-btn hidden" data-categories="action,adventure,multiplayer" style="display: none;">
+          <img src="./assets/images/yohohoio.png" alt="Yohoho.io" loading="lazy" />
+          <div class="content">
+            <p class="title">Yohoho.io</p>
+            <p class="category">#action #adventure #multiplayer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('poly-track', 'Poly Track')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/polytrack.png" alt="Poly Track" loading="lazy" />
+          <div class="content">
+            <p class="title">Poly Track</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('slow-roads', 'Slow Roads')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/slowroads.png" alt="Slow Roads" loading="lazy" />
+          <div class="content">
+            <p class="title">Slow Roads</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('under-the-red-sky', 'Under the Red Sky')" class="game-btn hidden" data-categories="action,platformer,sports" style="display: none;">
+          <img src="./assets/images/undertheredsky.png" alt="Under the Red Sky" loading="lazy" />
+          <div class="content">
+            <p class="title">Under the Red Sky</p>
+            <p class="category">#action #platformer #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('animal-arena', 'Animal Arena')" class="game-btn hidden" data-categories="2-player,arcade" style="display: none;">
+          <img src="./assets/images/animalarena.png" alt="Animal Arena" loading="lazy" />
+          <div class="content">
+            <p class="title">Animal Arena</p>
+            <p class="category">#2-player #arcade</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('poor-bunny', 'Poor Bunny')" class="game-btn hidden" data-categories="2-player,action,arcade,sports" style="display: none;">
+          <img src="./assets/images/poorbunny.png" alt="Poor Bunny" loading="lazy" />
+          <div class="content">
+            <p class="title">Poor Bunny</p>
+            <p class="category">#2-player #action #arcade #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('ducklings-io', 'Ducklings.io')" class="game-btn hidden" data-categories="multiplayer" style="display: none;">
+          <img src="./assets/images/ducklingsio.png" alt="Ducklings.io" loading="lazy" />
+          <div class="content">
+            <p class="title">Ducklings.io</p>
+            <p class="category">#multiplayer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('blumgi-paintball', 'Blumgi Paintball')" class="game-btn hidden" data-categories="2-player,arcade,sports" style="display: none;">
+          <img src="./assets/images/blumgipaintball.png" alt="Blumgi Paintball" loading="lazy" />
+          <div class="content">
+            <p class="title">Blumgi Paintball</p>
+            <p class="category">#2-player #arcade #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('blumgi-racers', 'Blumgi Racers')" class="game-btn hidden" data-categories="driving,platformer" style="display: none;">
+          <img src="./assets/images/blumgiracers.png" alt="Blumgi Racers" loading="lazy" />
+          <div class="content">
+            <p class="title">Blumgi Racers</p>
+            <p class="category">#driving #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('blumgi-soccer', 'Blumgi Soccer')" class="game-btn hidden" data-categories="action,sports" style="display: none;">
+          <img src="./assets/images/blumgisoccer.png" alt="Blumgi Soccer" loading="lazy" />
+          <div class="content">
+            <p class="title">Blumgi Soccer</p>
+            <p class="category">#action #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('blumgi-dragon', 'Blumgi Dragon')" class="game-btn hidden" data-categories="2-player,action,arcade" style="display: none;">
+          <img src="./assets/images/blumgidragon.png" alt="Blumgi Dragon" loading="lazy" />
+          <div class="content">
+            <p class="title">Blumgi Dragon</p>
+            <p class="category">#2-player #action #arcade</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('blumgi-bloom', 'Blumgi Bloom')" class="game-btn hidden" data-categories="arcade,puzzle" style="display: none;">
+          <img src="./assets/images/blumgibloom.png" alt="Blumgi Bloom" loading="lazy" />
+          <div class="content">
+            <p class="title">Blumgi Bloom</p>
+            <p class="category">#arcade #puzzle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('blumgi-ball', 'Blumgi Ball')" class="game-btn hidden" data-categories="sports" style="display: none;">
+          <img src="./assets/images/blumgiball.png" alt="Blumgi Ball" loading="lazy" />
+          <div class="content">
+            <p class="title">Blumgi Ball</p>
+            <p class="category">#sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('blumgi-castle', 'Blumgi Castle')" class="game-btn hidden" data-categories="2-player,action,arcade" style="display: none;">
+          <img src="./assets/images/blumgicastle.png" alt="Blumgi Castle" loading="lazy" />
+          <div class="content">
+            <p class="title">Blumgi Castle</p>
+            <p class="category">#2-player #action #arcade</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('blumgi-rocket', 'Blumgi Rocket')" class="game-btn hidden" data-categories="platformer,driving" style="display: none;">
+          <img src="./assets/images/blumgirocket.png" alt="Blumgi Rocket" loading="lazy" />
+          <div class="content">
+            <p class="title">Blumgi Rocket</p>
+            <p class="category">#platformer #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('blumgi-slime', 'Blumgi Slime')" class="game-btn hidden" data-categories="2-player,arcade,platformer" style="display: none;">
+          <img src="./assets/images/blumgislime.png" alt="Blumgi Slime" loading="lazy" />
+          <div class="content">
+            <p class="title">Blumgi Slime</p>
+            <p class="category">#2-player #arcade #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('swingo', 'Swingo')" class="game-btn hidden" data-categories="arcade,platformer" style="display: none;">
+          <img src="./assets/images/swingo.png" alt="Swingo" loading="lazy" />
+          <div class="content">
+            <p class="title">Swingo</p>
+            <p class="category">#arcade #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('zombie-rush', 'Zombie Rush')" class="game-btn hidden" data-categories="2-player,action,adventure,shooter" style="display: none;">
+          <img src="./assets/images/zombierush.png" alt="Zombie Rush" loading="lazy" />
+          <div class="content">
+            <p class="title">Zombie Rush</p>
+            <p class="category">#2-player #action #adventure #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('animals-volleyball', 'Animals Volleyball')" class="game-btn hidden" data-categories="2-player,action,sports" style="display: none;">
+          <img src="./assets/images/animalsvolleyball.png" alt="Animals Volleyball" loading="lazy" />
+          <div class="content">
+            <p class="title">Animals Volleyball</p>
+            <p class="category">#2-player #action #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('jump-only', 'Jump Only')" class="game-btn hidden" data-categories="arcade,platformer" style="display: none;">
+          <img src="./assets/images/jumponly.png" alt="Jump Only" loading="lazy" />
+          <div class="content">
+            <p class="title">Jump Only</p>
+            <p class="category">#arcade #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('chicken-merge-2', 'Chicken Merge 2')" class="game-btn hidden" data-categories="merge" style="display: none;">
+          <img src="./assets/images/chickenmerge2.png" alt="Chicken Merge 2" loading="lazy" />
+          <div class="content">
+            <p class="title">Chicken Merge 2</p>
+            <p class="category">#merge</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('chicken-merge', 'Chicken Merge')" class="game-btn hidden" data-categories="merge" style="display: none;">
+          <img src="./assets/images/chickenmerge.png" alt="Chicken Merge" loading="lazy" />
+          <div class="content">
+            <p class="title">Chicken Merge</p>
+            <p class="category">#merge</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('gobattle', 'GoBattle')" class="game-btn hidden" data-categories="2-player,arcade" style="display: none;">
+          <img src="./assets/images/gobattle.png" alt="GoBattle" loading="lazy" />
+          <div class="content">
+            <p class="title">GoBattle</p>
+            <p class="category">#2-player #arcade</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('dadish-3d', 'Dadish 3D')" class="game-btn hidden show loaded" data-categories="action,adventure,platformer" style="">
+          <img src="./assets/images/dadish3d.png" alt="Dadish 3D" loading="lazy" />
+          <div class="content">
+            <p class="title">Dadish 3D</p>
+            <p class="category">#action #adventure #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('dadish', 'Dadish')" class="game-btn hidden show loaded" data-categories="action,adventure,platformer" style="display: none;">
+          <img src="./assets/images/dadish.png" alt="Dadish" loading="lazy" />
+          <div class="content">
+            <p class="title">Dadish</p>
+            <p class="category">#action #adventure #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('dadish-2', 'Dadish 2')" class="game-btn hidden show loaded" data-categories="action,adventure,platformer" style="">
+          <img src="./assets/images/dadish2.png" alt="Dadish 2" loading="lazy" />
+          <div class="content">
+            <p class="title">Dadish 2</p>
+            <p class="category">#action #adventure #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('dadish-3', 'Dadish 3')" class="game-btn hidden show loaded" data-categories="action,adventure,platformer" style="">
+          <img src="./assets/images/dadish3.png" alt="Dadish 3" loading="lazy" />
+          <div class="content">
+            <p class="title">Dadish 3</p>
+            <p class="category">#action #adventure #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('super-fowlst', 'Super Fowlst')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/superfowlst.png" alt="Super Fowlst" loading="lazy" />
+          <div class="content">
+            <p class="title">Super Fowlst</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('super-fowlst-2', 'Super Fowlst 2')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/superfowlst2.png" alt="Super Fowlst 2" loading="lazy" />
+          <div class="content">
+            <p class="title">Super Fowlst 2</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('tag', 'Tag')" class="game-btn hidden" data-categories="2-player,platformer,sports" style="display: none;">
+          <img src="./assets/images/tag.png" alt="Tag" loading="lazy" />
+          <div class="content">
+            <p class="title">Tag</p>
+            <p class="category">#2-player #platformer #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('tag-2', 'Tag 2')" class="game-btn hidden" data-categories="2-player,platformer,sports" style="display: none;">
+          <img src="./assets/images/tag2.png" alt="Tag 2" loading="lazy" />
+          <div class="content">
+            <p class="title">Tag 2</p>
+            <p class="category">#2-player #platformer #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('shadow-trick', 'Shadow Trick')" class="game-btn hidden" data-categories="platformer" style="display: none;">
+          <img src="./assets/images/shadowtrick.png" alt="Shadow Trick" loading="lazy" />
+          <div class="content">
+            <p class="title">Shadow Trick</p>
+            <p class="category">#platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('zooplop', 'Zooplop')" class="game-btn hidden" data-categories="merge,puzzle" style="display: none;">
+          <img src="./assets/images/zooplop.png" alt="Zooplop" loading="lazy" />
+          <div class="content">
+            <p class="title">Zooplop</p>
+            <p class="category">#merge #puzzle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('physibox', 'Physibox')" class="game-btn hidden" data-categories="idle" style="display: none;">
+          <img src="./assets/images/physibox.png" alt="Physibox" loading="lazy" />
+          <div class="content">
+            <p class="title">Physibox</p>
+            <p class="category">#idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('geometry-dash', 'Geometry Dash')" class="game-btn hidden" data-categories="action,classic" style="display: none;">
+          <img src="./assets/images/geometrydash.png" alt="Geometry Dash" loading="lazy" />
+          <div class="content">
+            <p class="title">Geometry Dash</p>
+            <p class="category">#action #classic</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('water-polo-ragdoll', 'Water Polo Ragdoll')" class="game-btn hidden" data-categories="2-player,action,sports" style="display: none;">
+          <img src="./assets/images/waterpoloragdoll.png" alt="Water Polo Ragdoll" loading="lazy" />
+          <div class="content">
+            <p class="title">Water Polo Ragdoll</p>
+            <p class="category">#2-player #action #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('space-wars-battleground', 'Space Wars Battleground')" class="game-btn hidden" data-categories="action,shooter" style="display: none;">
+          <img src="./assets/images/spacewarsbattleground.png" alt="Space Wars Battleground" loading="lazy" />
+          <div class="content">
+            <p class="title">Space Wars Battleground</p>
+            <p class="category">#action #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('level-devil', 'Level Devil')" class="game-btn hidden" data-categories="action,adventure,arcade,platformer" style="display: none;">
+          <img src="./assets/images/leveldevil.png" alt="Level Devil" loading="lazy" />
+          <div class="content">
+            <p class="title">Level Devil</p>
+            <p class="category">#action #adventure #arcade #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('armed-forces-io', 'ArmedForces.io')" class="game-btn hidden" data-categories="action,multiplayer,shooter" style="display: none;">
+          <img src="./assets/images/armedforcesio.png" alt="ArmedForces.io" loading="lazy" />
+          <div class="content">
+            <p class="title">ArmedForces.io</p>
+            <p class="category">#action #multiplayer #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('ks-2-teams', 'KS 2 Teams')" class="game-btn hidden" data-categories="action,shooter" style="display: none;">
+          <img src="./assets/images/ks2teams.png" alt="KS 2 Teams" loading="lazy" />
+          <div class="content">
+            <p class="title">KS 2 Teams</p>
+            <p class="category">#action #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('subway-surfers', 'Subway Surfers')" class="game-btn hidden" data-categories="action,adventure,platformer" style="display: none;">
+          <img src="./assets/images/subwaysurfers.png" alt="Subway Surfers" loading="lazy" />
+          <div class="content">
+            <p class="title">Subway Surfers</p>
+            <p class="category">#action #adventure #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('super-tunnel-rush', 'Super Tunnel Rush')" class="game-btn hidden" data-categories="driving,sports" style="display: none;">
+          <img src="./assets/images/supertunnelrush.png" alt="Super Tunnel Rush" loading="lazy" />
+          <div class="content">
+            <p class="title">Super Tunnel Rush</p>
+            <p class="category">#driving #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('unicycle-legend', 'Unicycle Legend')" class="game-btn hidden" data-categories="sports" style="display: none;">
+          <img src="./assets/images/unicyclelegend.png" alt="Unicycle Legend" loading="lazy" />
+          <div class="content">
+            <p class="title">Unicycle Legend</p>
+            <p class="category">#sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('unicycle-hero', 'Unicycle Hero')" class="game-btn hidden" data-categories="sports" style="display: none;">
+          <img src="./assets/images/unicyclehero.png" alt="Unicycle Hero" loading="lazy" />
+          <div class="content">
+            <p class="title">Unicycle Hero</p>
+            <p class="category">#sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('goober-world', 'Goober World')" class="game-btn hidden" data-categories="action,adventure,platformer" style="display: none;">
+          <img src="./assets/images/gooberworld.png" alt="Goober World" loading="lazy" />
+          <div class="content">
+            <p class="title">Goober World</p>
+            <p class="category">#action #adventure #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('bobble', 'Bobble')" class="game-btn hidden" data-categories="arcade" style="display: none;">
+          <img src="./assets/images/bobble.png" alt="Bobble" loading="lazy" />
+          <div class="content">
+            <p class="title">Bobble</p>
+            <p class="category">#arcade</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('merge-the-numbers', 'Merge the Numbers')" class="game-btn hidden" data-categories="puzzle,merge" style="display: none;">
+          <img src="./assets/images/mergethenumbers.png" alt="Merge the Numbers" loading="lazy" />
+          <div class="content">
+            <p class="title">Merge the Numbers</p>
+            <p class="category">#puzzle #merge</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('merge-tycoon', 'Merge Tycoon')" class="game-btn hidden" data-categories="idle,merge" style="display: none;">
+          <img src="./assets/images/mergetycoon.png" alt="Merge Tycoon" loading="lazy" />
+          <div class="content">
+            <p class="title">Merge Tycoon</p>
+            <p class="category">#idle #merge</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('tower-defense-mingling', 'Tower Defense Mingling')" class="game-btn hidden" data-categories="action,merge" style="display: none;">
+          <img src="./assets/images/towerdefensemingling.png" alt="Tower Defense Mingling" loading="lazy" />
+          <div class="content">
+            <p class="title">Tower Defense Mingling</p>
+            <p class="category">#action #merge</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('watermelon-game', 'Watermelon Game')" class="game-btn hidden" data-categories="merge,puzzle" style="display: none;">
+          <img src="./assets/images/watermelongame.png" alt="Watermelon Game" loading="lazy" />
+          <div class="content">
+            <p class="title">Watermelon Game</p>
+            <p class="category">#merge #puzzle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('choppy-orc', 'Choppy Orc')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/choppyorc.png" alt="Choppy Orc" loading="lazy" />
+          <div class="content">
+            <p class="title">Choppy Orc</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('battle-wheels', 'Battle Wheels')" class="game-btn hidden" data-categories="2-player,arcade,driving" style="display: none;">
+          <img src="./assets/images/battlewheels.png" alt="Battle Wheels" loading="lazy" />
+          <div class="content">
+            <p class="title">Battle Wheels</p>
+            <p class="category">#2-player #arcade #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('race-survival-arena-king', 'Race Survival Arena King')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/racesurvivalarenaking.png" alt="Race Survival Arena King" loading="lazy" />
+          <div class="content">
+            <p class="title">Race Survival Arena King</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('push-your-luck', 'Push Your Luck')" class="game-btn hidden" data-categories="luck" style="display: none;">
+          <img src="./assets/images/pushyourluck.png" alt="Push Your Luck" loading="lazy" />
+          <div class="content">
+            <p class="title">Push Your Luck</p>
+            <p class="category">#luck</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('gobble', 'Gobble')" class="game-btn hidden" data-categories="arcade,puzzle" style="display: none;">
+          <img src="./assets/images/gobble.png" alt="Gobble" loading="lazy" />
+          <div class="content">
+            <p class="title">Gobble</p>
+            <p class="category">#arcade #puzzle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('monster-tracks', 'Monster Tracks')" class="game-btn hidden" data-categories="arcade,driving" style="display: none;">
+          <img src="./assets/images/monstertracks.png" alt="Monster Tracks" loading="lazy" />
+          <div class="content">
+            <p class="title">Monster Tracks</p>
+            <p class="category">#arcade #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('drive-mad', 'Drive Mad')" class="game-btn hidden" data-categories="arcade,driving" style="display: none;">
+          <img src="./assets/images/drivemad.png" alt="Drive Mad" loading="lazy" />
+          <div class="content">
+            <p class="title">Drive Mad</p>
+            <p class="category">#arcade #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('recoil', 'Recoil')" class="game-btn hidden" data-categories="action,arcade,puzzle" style="display: none;">
+          <img src="./assets/images/recoil.png" alt="Recoil" loading="lazy" />
+          <div class="content">
+            <p class="title">Recoil</p>
+            <p class="category">#action #arcade #puzzle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('speed-king', 'Speed King')" class="game-btn hidden" data-categories="arcade,platformer,puzzle" style="display: none;">
+          <img src="./assets/images/speedking.png" alt="Speed King" loading="lazy" />
+          <div class="content">
+            <p class="title">Speed King</p>
+            <p class="category">#arcade #platformer #puzzle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('bank-robbery-3', 'Bank Robbery 3')" class="game-btn hidden" data-categories="action,shooter" style="display: none;">
+          <img src="./assets/images/bankrobbery3.png" alt="Bank Robbery 3" loading="lazy" />
+          <div class="content">
+            <p class="title">Bank Robbery 3</p>
+            <p class="category">#action #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('bank-robbery-2', 'Bank Robbery 2')" class="game-btn hidden" data-categories="action,shooter" style="display: none;">
+          <img src="./assets/images/bankrobbery2.png" alt="Bank Robbery 2" loading="lazy" />
+          <div class="content">
+            <p class="title">Bank Robbery 2</p>
+            <p class="category">#action #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('bank-robbery', 'Bank Robbery')" class="game-btn hidden" data-categories="action,shooter" style="display: none;">
+          <img src="./assets/images/bankrobbery.png" alt="Bank Robbery" loading="lazy" />
+          <div class="content">
+            <p class="title">Bank Robbery</p>
+            <p class="category">#action #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('gladihoppers', 'Gladihoppers')" class="game-btn hidden" data-categories="action,adventure" style="display: none;">
+          <img src="./assets/images/gladihoppers.png" alt="Gladihoppers" loading="lazy" />
+          <div class="content">
+            <p class="title">Gladihoppers</p>
+            <p class="category">#action #adventure</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('monkey-mart', 'Monkey Mart')" class="game-btn hidden" data-categories="arcade,management,idle" style="display: none;">
+          <img src="./assets/images/monkeymart.png" alt="Monkey Mart" loading="lazy" />
+          <div class="content">
+            <p class="title">Monkey Mart</p>
+            <p class="category">#arcade #management #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('not-not', 'Not Not')" class="game-btn hidden" data-categories="puzzle" style="display: none;">
+          <img src="./assets/images/notnot.png" alt="Not Not" loading="lazy" />
+          <div class="content">
+            <p class="title">Not Not</p>
+            <p class="category">#puzzle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('vex-x3m', 'Vex X3M')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/vexx3m.png" alt="Vex X3M" loading="lazy" />
+          <div class="content">
+            <p class="title">Vex X3M</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('vex-8', 'Vex 8')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/vex8.png" alt="Vex 8" loading="lazy" />
+          <div class="content">
+            <p class="title">Vex 8</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('vex-7', 'Vex 7')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/vex7.png" alt="Vex 7" loading="lazy" />
+          <div class="content">
+            <p class="title">Vex 7</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('vex-6', 'Vex 6')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/vex6.png" alt="Vex 6" loading="lazy" />
+          <div class="content">
+            <p class="title">Vex 6</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('vex-5', 'Vex 5')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/vex5.png" alt="Vex 5" loading="lazy" />
+          <div class="content">
+            <p class="title">Vex 5</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('vex-4', 'Vex 4')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/vex4.png" alt="Vex 4" loading="lazy" />
+          <div class="content">
+            <p class="title">Vex 4</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('vex-3', 'Vex 3')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/vex3.png" alt="Vex 3" loading="lazy" />
+          <div class="content">
+            <p class="title">Vex 3</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('rocket-soccer-derby', 'Rocket Soccer Derby')" class="game-btn hidden" data-categories="driving,sports" style="display: none;">
+          <img src="./assets/images/rocketsoccerderby.png" alt="Rocket Soccer Derby" loading="lazy" />
+          <div class="content">
+            <p class="title">Rocket Soccer Derby</p>
+            <p class="category">#driving #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('crossy-road', 'Crossy Road')" class="game-btn hidden" data-categories="arcade,classic" style="display: none;">
+          <img src="./assets/images/crossyroad.png" alt="Crossy Road" loading="lazy" />
+          <div class="content">
+            <p class="title">Crossy Road</p>
+            <p class="category">#arcade #classic</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('ovo', 'OvO')" class="game-btn hidden" data-categories="arcade,platformer,sports" style="display: none;">
+          <img src="./assets/images/ovo.png" alt="OvO" loading="lazy" />
+          <div class="content">
+            <p class="title">OvO</p>
+            <p class="category">#arcade #platformer #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('ovo-dimensions', 'OvO Dimensions')" class="game-btn hidden" data-categories="arcade,platformer,sports" style="display: none;">
+          <img src="./assets/images/ovodimensions.png" alt="OvO Dimensions" loading="lazy" />
+          <div class="content">
+            <p class="title">OvO Dimensions</p>
+            <p class="category">#arcade #platformer #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('table-tennis-world-tour', 'Table Tennis World Tour')" class="game-btn hidden" data-categories="sports" style="display: none;">
+          <img src="./assets/images/tabletennisworldtour.png" alt="Table Tennis World Tour" loading="lazy" />
+          <div class="content">
+            <p class="title">Table Tennis World Tour</p>
+            <p class="category">#sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('economical', 'Economical')" class="game-btn hidden" data-categories="platformer" style="display: none;">
+          <img src="./assets/images/economical.png" alt="Economical" loading="lazy" />
+          <div class="content">
+            <p class="title">Economical</p>
+            <p class="category">#platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('economical-2', 'Economical 2')" class="game-btn hidden" data-categories="platformer" style="display: none;">
+          <img src="./assets/images/economical2.png" alt="Economical 2" loading="lazy" />
+          <div class="content">
+            <p class="title">Economical 2</p>
+            <p class="category">#platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('day-of-meat-castle', 'Day of Meat: Castle')" class="game-btn hidden" data-categories="idle,management" style="display: none;">
+          <img src="./assets/images/dayofmeatcastle.png" alt="Day of Meat: Castle" loading="lazy" />
+          <div class="content">
+            <p class="title">Day of Meat: Castle</p>
+            <p class="category">#idle #management</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('day-of-meat-radiation', 'Day of Meat: Radiation')" class="game-btn hidden" data-categories="idle,management" style="display: none;">
+          <img src="./assets/images/dayofmeatradiation.png" alt="Day of Meat: Radiation" loading="lazy" />
+          <div class="content">
+            <p class="title">Day of Meat: Radiation</p>
+            <p class="category">#idle #management</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('retro-highway', 'Retro Highway')" class="game-btn hidden" data-categories="action,adventure,arcade,driving" style="display: none;">
+          <img src="./assets/images/retrohighway.png" alt="Retro Highway" loading="lazy" />
+          <div class="content">
+            <p class="title">Retro Highway</p>
+            <p class="category">#action #adventure #arcade #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('super-liquid-soccer', 'Super Liquid Soccer')" class="game-btn hidden" data-categories="sports" style="display: none;">
+          <img src="./assets/images/superliquidsoccer.png" alt="Super Liquid Soccer" loading="lazy" />
+          <div class="content">
+            <p class="title">Super Liquid Soccer</p>
+            <p class="category">#sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('yokai-dungeon', 'Yokai Dungeon')" class="game-btn hidden" data-categories="adventure" style="display: none;">
+          <img src="./assets/images/yokaidungeon.png" alt="Yokai Dungeon" loading="lazy" />
+          <div class="content">
+            <p class="title">Yokai Dungeon</p>
+            <p class="category">#adventure</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('bullet-bros', 'Bullet Bros')" class="game-btn hidden" data-categories="action,platformer,shooter" style="display: none;">
+          <img src="./assets/images/bulletbros.png" alt="Bullet Bros" loading="lazy" />
+          <div class="content">
+            <p class="title">Bullet Bros</p>
+            <p class="category">#action #platformer #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('flip-bros', 'Flip Bros')" class="game-btn hidden" data-categories="action,adventure,platformer" style="display: none;">
+          <img src="./assets/images/flipbros.png" alt="Flip Bros" loading="lazy" />
+          <div class="content">
+            <p class="title">Flip Bros</p>
+            <p class="category">#action #adventure #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('space-major-miner', 'Space Major Miner')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/spacemajorminer.png" alt="Space Major Miner" loading="lazy" />
+          <div class="content">
+            <p class="title">Space Major Miner</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('retro-bowl', 'Retro Bowl')" class="game-btn hidden" data-categories="management,sports" style="display: none;">
+          <img src="./assets/images/retrobowl.png" alt="Retro Bowl" loading="lazy" />
+          <div class="content">
+            <p class="title">Retro Bowl</p>
+            <p class="category">#management #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('poor-eddie', 'Poor Eddie')" class="game-btn hidden" data-categories="action,adventure,arcade" style="display: none;">
+          <img src="./assets/images/pooreddie.png" alt="Poor Eddie" loading="lazy" />
+          <div class="content">
+            <p class="title">Poor Eddie</p>
+            <p class="category">#action #adventure #arcade</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('drift-boss', 'Drift Boss')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/driftboss.png" alt="Drift Boss" loading="lazy" />
+          <div class="content">
+            <p class="title">Drift Boss</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('sausage-flip', 'Sausage Flip')" class="game-btn hidden" data-categories="arcade" style="display: none;">
+          <img src="./assets/images/sausageflip.png" alt="Sausage Flip" loading="lazy" />
+          <div class="content">
+            <p class="title">Sausage Flip</p>
+            <p class="category">#arcade</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('stickman-bike', 'Stickman Bike')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/stickmanbike.png" alt="Stickman Bike" loading="lazy" />
+          <div class="content">
+            <p class="title">Stickman Bike</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('stickman-hook', 'Stickman Hook')" class="game-btn hidden" data-categories="action" style="display: none;">
+          <img src="./assets/images/stickmanhook.png" alt="Stickman Hook" loading="lazy" />
+          <div class="content">
+            <p class="title">Stickman Hook</p>
+            <p class="category">#action</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('stickman-hook-halloween', 'Stickman Hook Halloween')" class="game-btn hidden" data-categories="action" style="display: none;">
+          <img src="./assets/images/stickmanhookhalloween.png" alt="Stickman Hook Halloween" loading="lazy" />
+          <div class="content">
+            <p class="title">Stickman Hook Halloween</p>
+            <p class="category">#action</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('ball-dodge', 'Ball Dodge')" class="game-btn hidden" data-categories="action" style="display: none;">
+          <img src="./assets/images/balldodge.png" alt="Ball Dodge" loading="lazy" />
+          <div class="content">
+            <p class="title">Ball Dodge</p>
+            <p class="category">#action</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('skiddy-taxi', 'Skiddy Taxi')" class="game-btn hidden" data-categories="driving" style="display: none;">
+          <img src="./assets/images/skiddytaxi.png" alt="Skiddy Taxi" loading="lazy" />
+          <div class="content">
+            <p class="title">Skiddy Taxi</p>
+            <p class="category">#driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('snow-rider-3d', 'Snow Rider 3D')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/snowrider3d.png" alt="Snow Rider 3D" loading="lazy" />
+          <div class="content">
+            <p class="title">Snow Rider 3D</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('ovo', 'OvO')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/ovo.png" alt="OvO" loading="lazy" />
+          <div class="content">
+            <p class="title">OvO</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('ovo-dimensions', 'OvO Dimensions')" class="game-btn hidden" data-categories="action,arcade,platformer" style="display: none;">
+          <img src="./assets/images/ovodimensions.png" alt="OvO Dimensions" loading="lazy" />
+          <div class="content">
+            <p class="title">OvO Dimensions</p>
+            <p class="category">#action #arcade #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('gold-digger-frvr', 'Gold Digger FRVR')" class="game-btn hidden" data-categories="action,adventure" style="display: none;">
+          <img src="./assets/images/golddiggerfrvr.png" alt="Gold Digger FRVR" loading="lazy" />
+          <div class="content">
+            <p class="title">Gold Digger FRVR</p>
+            <p class="category">#action #adventure</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('cow-bay', 'Cow Bay')" class="game-btn hidden" data-categories="management,idle" style="display: none;">
+          <img src="./assets/images/cowbay.png" alt="Cow Bay" loading="lazy" />
+          <div class="content">
+            <p class="title">Cow Bay</p>
+            <p class="category">#management #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('csgo-clicker', 'CS:GO Clicker')" class="game-btn hidden" data-categories="clicker,idle" style="display: none;">
+          <img src="./assets/images/csgoclicker.png" alt="CS:GO Clicker" loading="lazy" />
+          <div class="content">
+            <p class="title">CS:GO Clicker</p>
+            <p class="category">#clicker #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('soccer-skills-world-cup', 'Soccer Skills World Cup')" class="game-btn hidden" data-categories="action,sports" style="display: none;">
+          <img src="./assets/images/soccerskillsworldcup.png" alt="Soccer Skills World Cup" loading="lazy" />
+          <div class="content">
+            <p class="title">Soccer Skills World Cup</p>
+            <p class="category">#action #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('soccer-skills-euro-cup', 'Soccer Skills Euro Cup')" class="game-btn hidden" data-categories="action,sports" style="display: none;">
+          <img src="./assets/images/soccerskillseurocup.png" alt="Soccer Skills Euro Cup" loading="lazy" />
+          <div class="content">
+            <p class="title">Soccer Skills Euro Cup</p>
+            <p class="category">#action #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('soccer-skills-champions-league', 'Soccer Skills Champions League')" class="game-btn hidden" data-categories="action,sports" style="display: none;">
+          <img src="./assets/images/soccerskillschampionsleague.png" alt="Soccer Skills Champions League" loading="lazy" />
+          <div class="content">
+            <p class="title">Soccer Skills Champions League</p>
+            <p class="category">#action #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('space-thing', 'Space Thing')" class="game-btn hidden" data-categories="action,arcade,platformer" style="display: none;">
+          <img src="./assets/images/spacething.png" alt="Space Thing" loading="lazy" />
+          <div class="content">
+            <p class="title">Space Thing</p>
+            <p class="category">#action #arcade #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('tiny-fishing', 'Tiny Fishing')" class="game-btn hidden" data-categories="sports,idle" style="display: none;">
+          <img src="./assets/images/tinyfishing.png" alt="Tiny Fishing" loading="lazy" />
+          <div class="content">
+            <p class="title">Tiny Fishing</p>
+            <p class="category">#sports #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('turbo-moto-racer', 'Turbo Moto Racer')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/turbomotoracer.png" alt="Turbo Moto Racer" loading="lazy" />
+          <div class="content">
+            <p class="title">Turbo Moto Racer</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('candy-crush', 'Candy Crush')" class="game-btn hidden" data-categories="classic,puzzle,merge" style="display: none;">
+          <img src="./assets/images/candycrush.png" alt="Candy Crush" loading="lazy" />
+          <div class="content">
+            <p class="title">Candy Crush</p>
+            <p class="category">#classic #puzzle #merge</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('four-colors', 'Four Colors')" class="game-btn hidden" data-categories="classic" style="display: none;">
+          <img src="./assets/images/fourcolors.png" alt="Four Colors" loading="lazy" />
+          <div class="content">
+            <p class="title">Four Colors</p>
+            <p class="category">#classic</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('master-chess', 'Master Chess')" class="game-btn hidden" data-categories="classic" style="display: none;">
+          <img src="./assets/images/masterchess.png" alt="Master Chess" loading="lazy" />
+          <div class="content">
+            <p class="title">Master Chess</p>
+            <p class="category">#classic</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('master-checkers', 'Master Checkers')" class="game-btn hidden" data-categories="classic" style="display: none;">
+          <img src="./assets/images/mastercheckers.png" alt="Master Checkers" loading="lazy" />
+          <div class="content">
+            <p class="title">Master Checkers</p>
+            <p class="category">#classic</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('cookie-clicker', 'Cookie Clicker')" class="game-btn hidden" data-categories="classic,idle,clicker" style="display: none;">
+          <img src="./assets/images/cookieclicker.png" alt="Cookie Clicker" loading="lazy" />
+          <div class="content">
+            <p class="title">Cookie Clicker</p>
+            <p class="category">#classic #idle #clicker</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('crazy-bikes', 'Crazy Bikes')" class="game-btn hidden" data-categories="driving" style="display: none;">
+          <img src="./assets/images/crazybikes.png" alt="Crazy Bikes" loading="lazy" />
+          <div class="content">
+            <p class="title">Crazy Bikes</p>
+            <p class="category">#driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('crazy-cars', 'Crazy Cars')" class="game-btn hidden" data-categories="driving" style="display: none;">
+          <img src="./assets/images/crazycars.png" alt="Crazy Cars" loading="lazy" />
+          <div class="content">
+            <p class="title">Crazy Cars</p>
+            <p class="category">#driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('tanuki-sunset', 'Tanuki Sunset')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/tanukisunset.png" alt="Tanuki Sunset" loading="lazy" />
+          <div class="content">
+            <p class="title">Tanuki Sunset</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('cluster-rush', 'Cluster Rush')" class="game-btn hidden" data-categories="action,driving" style="display: none;">
+          <img src="./assets/images/clusterrush.png" alt="Cluster Rush" loading="lazy" />
+          <div class="content">
+            <p class="title">Cluster Rush</p>
+            <p class="category">#action #driving</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('core-ball', 'Core Ball')" class="game-btn hidden" data-categories="action,classic" style="display: none;">
+          <img src="./assets/images/coreball.png" alt="Core Ball" loading="lazy" />
+          <div class="content">
+            <p class="title">Core Ball</p>
+            <p class="category">#action #classic</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('stack', 'Stack')" class="game-btn hidden" data-categories="action,classic" style="display: none;">
+          <img src="./assets/images/stack.png" alt="Stack" loading="lazy" />
+          <div class="content">
+            <p class="title">Stack</p>
+            <p class="category">#action #classic</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('soccer-random', 'Soccer Random')" class="game-btn hidden" data-categories="2-player,sports" style="display: none;">
+          <img src="./assets/images/soccerrandom.png" alt="Soccer Random" loading="lazy" />
+          <div class="content">
+            <p class="title">Soccer Random</p>
+            <p class="category">#2-player #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('basket-random', 'Basket Random')" class="game-btn hidden" data-categories="2-player,sports" style="display: none;">
+          <img src="./assets/images/basketrandom.png" alt="Basket Random" loading="lazy" />
+          <div class="content">
+            <p class="title">Basket Random</p>
+            <p class="category">#2-player #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('volley-random', 'Volley Random')" class="game-btn hidden" data-categories="2-player,sports" style="display: none;">
+          <img src="./assets/images/volleyrandom.png" alt="Volley Random" loading="lazy" />
+          <div class="content">
+            <p class="title">Volley Random</p>
+            <p class="category">#2-player #sports</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('justfalllol', 'JustFall.LOL')" class="game-btn hidden" data-categories="action,platformer" style="display: none;">
+          <img src="./assets/images/justfalllol.png" alt="JustFall.LOL" loading="lazy" />
+          <div class="content">
+            <p class="title">JustFall.LOL</p>
+            <p class="category">#action #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('bitlife', 'Bitlife')" class="game-btn hidden" data-categories="management" style="display: none;">
+          <img src="./assets/images/bitlife.png" alt="Bitlife" loading="lazy" />
+          <div class="content">
+            <p class="title">Bitlife</p>
+            <p class="category">#management</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('idle-mining-empire', 'Idle Mining Empire')" class="game-btn hidden" data-categories="management,idle" style="display: none;">
+          <img src="./assets/images/idleminingempire.png" alt="Idle Mining Empire" loading="lazy" />
+          <div class="content">
+            <p class="title">Idle Mining Empire</p>
+            <p class="category">#management #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('idle-startup-tycoon', 'Idle Startup Tycoon')" class="game-btn hidden" data-categories="management,idle" style="display: none;">
+          <img src="./assets/images/idlestartuptycoon.png" alt="Idle Startup Tycoon" loading="lazy" />
+          <div class="content">
+            <p class="title">Idle Startup Tycoon</p>
+            <p class="category">#management #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('idle-farming-business', 'Idle Farming Business')" class="game-btn hidden" data-categories="management,idle" style="display: none;">
+          <img src="./assets/images/idlefarmingbusiness.png" alt="Idle Farming Business" loading="lazy" />
+          <div class="content">
+            <p class="title">Idle Farming Business</p>
+            <p class="category">#management #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('idle-mining-empire', 'Idle Mining Empire')" class="game-btn hidden" data-categories="management,idle" style="display: none;">
+          <img src="./assets/images/idleminingempire.png" alt="Idle Mining Empire" loading="lazy" />
+          <div class="content">
+            <p class="title">Idle Mining Empire</p>
+            <p class="category">#management #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('idle-gang', 'Idle Gang')" class="game-btn hidden" data-categories="management,idle" style="display: none;">
+          <img src="./assets/images/idlegang.png" alt="Idle Gang" loading="lazy" />
+          <div class="content">
+            <p class="title">Idle Gang</p>
+            <p class="category">#management #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('idle-light-city', 'Idle Light City')" class="game-btn hidden" data-categories="management,idle" style="display: none;">
+          <img src="./assets/images/idlelightcity.png" alt="Idle Light City" loading="lazy" />
+          <div class="content">
+            <p class="title">Idle Light City</p>
+            <p class="category">#management #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('iron-snout', 'Iron Snout')" class="game-btn hidden" data-categories="action,adventure" style="display: none;">
+          <img src="./assets/images/ironsnout.png" alt="Iron Snout" loading="lazy" />
+          <div class="content">
+            <p class="title">Iron Snout</p>
+            <p class="category">#action #adventure</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('bacon-may-die', 'Bacon May Die')" class="game-btn hidden" data-categories="action" style="display: none;">
+          <img src="./assets/images/baconmaydie.png" alt="Bacon May Die" loading="lazy" />
+          <div class="content">
+            <p class="title">Bacon May Die</p>
+            <p class="category">#action</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('idle-breakout', 'Idle Breakout')" class="game-btn hidden" data-categories="clicker,idle" style="display: none;">
+          <img src="./assets/images/idlebreakout.png" alt="Idle Breakout" loading="lazy" />
+          <div class="content">
+            <p class="title">Idle Breakout</p>
+            <p class="category">#clicker #idle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('dune', 'Dune')" class="game-btn hidden" data-categories="action,classic" style="display: none;">
+          <img src="./assets/images/dune.png" alt="Dune" loading="lazy" />
+          <div class="content">
+            <p class="title">Dune</p>
+            <p class="category">#action #classic</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('rooftop-snipers', 'Rooftop Snipers')" class="game-btn hidden" data-categories="2-player,shooter" style="display: none;">
+          <img src="./assets/images/rooftopsnipers.png" alt="Rooftop Snipers" loading="lazy" />
+          <div class="content">
+            <p class="title">Rooftop Snipers</p>
+            <p class="category">#2-player #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('rooftop-snipers-2', 'Rooftop Snipers 2')" class="game-btn hidden" data-categories="2-player,shooter" style="display: none;">
+          <img src="./assets/images/rooftopsnipers2.png" alt="Rooftop Snipers 2" loading="lazy" />
+          <div class="content">
+            <p class="title">Rooftop Snipers 2</p>
+            <p class="category">#2-player #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('tightrope-theatre', 'Tightrope Theatre')" class="game-btn hidden" data-categories="arcade,puzzle" style="display: none;">
+          <img src="./assets/images/tightropetheatre.png" alt="Tightrope Theatre" loading="lazy" />
+          <div class="content">
+            <p class="title">Tightrope Theatre</p>
+            <p class="category">#arcade #puzzle</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('time-shooter-2', 'Time Shooter 2')" class="game-btn hidden" data-categories="action,shooter" style="display: none;">
+          <img src="./assets/images/timeshooter2.png" alt="Time Shooter 2" loading="lazy" />
+          <div class="content">
+            <p class="title">Time Shooter 2</p>
+            <p class="category">#action #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('time-shooter-3', 'Time Shooter 3')" class="game-btn hidden" data-categories="action,shooter" style="display: none;">
+          <img src="./assets/images/timeshooter3.png" alt="Time Shooter 3" loading="lazy" />
+          <div class="content">
+            <p class="title">Time Shooter 3</p>
+            <p class="category">#action #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('funny-shooter-2', 'Funny Shooter 2')" class="game-btn hidden" data-categories="action,shooter" style="display: none;">
+          <img src="./assets/images/funnyshooter2.png" alt="Funny Shooter 2" loading="lazy" />
+          <div class="content">
+            <p class="title">Funny Shooter 2</p>
+            <p class="category">#action #shooter</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('double-panda', 'Double Panda')" class="game-btn hidden" data-categories="2-player,action,adventure,flash,platformer" style="display: none;">
+          <img src="./assets/images/doublepanda.png" alt="Double Panda" loading="lazy" />
+          <div class="content">
+            <p class="title">Double Panda</p>
+            <p class="category">#2-player #action #adventure #flash #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('jacksmith', 'Jacksmith')" class="game-btn hidden" data-categories="action,adventure,flash,management" style="display: none;">
+          <img src="./assets/images/jacksmith.png" alt="Jacksmith" loading="lazy" />
+          <div class="content">
+            <p class="title">Jacksmith</p>
+            <p class="category">#action #adventure #flash #management</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('happy-wheels', 'Happy Wheels')" class="game-btn hidden" data-categories="action,adventure,flash,platformer" style="display: none;">
+          <img src="./assets/images/happywheels.png" alt="Happy Wheels" loading="lazy" />
+          <div class="content">
+            <p class="title">Happy Wheels</p>
+            <p class="category">#action #adventure #flash #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('one-chance', 'One Chance')" class="game-btn hidden" data-categories="adventure,flash" style="display: none;">
+          <img src="./assets/images/onechance.png" alt="One Chance" loading="lazy" />
+          <div class="content">
+            <p class="title">One Chance</p>
+            <p class="category">#adventure #flash</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('fleeing-the-complex', 'Fleeing the Complex')" class="game-btn hidden" data-categories="adventure,flash" style="display: none;">
+          <img src="./assets/images/fleeingthecomplex.png" alt="Fleeing the Complex" loading="lazy" />
+          <div class="content">
+            <p class="title">Fleeing the Complex</p>
+            <p class="category">#adventure #flash</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('infiltrating-the-airship', 'Infiltrating the Airship')" class="game-btn hidden" data-categories="adventure,flash" style="display: none;">
+          <img src="./assets/images/infiltratingtheairship.png" alt="Infiltrating the Airship" loading="lazy" />
+          <div class="content">
+            <p class="title">Infiltrating the Airship</p>
+            <p class="category">#adventure #flash</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('stealing-the-diamond', 'Stealing the Diamond')" class="game-btn hidden" data-categories="adventure,flash" style="display: none;">
+          <img src="./assets/images/stealingthediamond.png" alt="Stealing the Diamond" loading="lazy" />
+          <div class="content">
+            <p class="title">Stealing the Diamond</p>
+            <p class="category">#adventure #flash</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('escaping-the-prison', 'Escaping the Prison')" class="game-btn hidden" data-categories="adventure,flash" style="display: none;">
+          <img src="./assets/images/escapingtheprison.png" alt="Escaping the Prison" loading="lazy" />
+          <div class="content">
+            <p class="title">Escaping the Prison</p>
+            <p class="category">#adventure #flash</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('breaking-the-bank', 'Breaking the Bank')" class="game-btn hidden" data-categories="adventure,flash" style="display: none;">
+          <img src="./assets/images/breakingthebank.png" alt="Breaking the Bank" loading="lazy" />
+          <div class="content">
+            <p class="title">Breaking the Bank</p>
+            <p class="category">#adventure #flash</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('5b', '5b')" class="game-btn hidden" data-categories="adventure,flash" style="display: none;">
+          <img src="./assets/images/5b.png" alt="5b" loading="lazy" />
+          <div class="content">
+            <p class="title">5b</p>
+            <p class="category">#adventure #flash</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('run-3', 'Run 3')" class="game-btn hidden" data-categories="adventure,flash,platformer" style="display: none;">
+          <img src="./assets/images/run3.png" alt="Run 3" loading="lazy" />
+          <div class="content">
+            <p class="title">Run 3</p>
+            <p class="category">#adventure #flash #platformer</p>
+          </div>
+        </a>
+      
+        <a onclick="addGameTab('the-impossible-quiz-2', 'The Impossible Quiz 2')" class="game-btn hidden" data-categories="flash" style="display: none;">
+          <img src="./assets/images/theimpossiblequiz2.png" alt="The Impossible Quiz 2" loading="lazy" />
+          <div class="content">
+            <p class="title">The Impossible Quiz 2</p>
+            <p class="category">#flash</p>
+          </div>
+        </a>
+      </div>
+      </div>
+      <div class="page" id="proxy-page" style="display: none;">
+        <h1>Proxy</h1>
+        <form id="uv-form">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
+          <input id="uv-address" type="text" placeholder="Search Google or type a URL" />
+        </form>
+        <div>
+          <p id="uv-error"></p>
+          <pre id="uv-error-code"></pre>
+        </div>
+        <div class="shortcuts">
+          <button onclick="openProxyPage('https://google.com/')" class="shortcut" title="shortcut">
+            <img src="./assets/tab-logos/google.png" alt="" class="shortcut-image" />
+            <p>Google</p>
+          </button>
+          <button onclick="openProxyPage('https://youtube.com/')" class="shortcut" title="shortcut">
+            <img src="./assets/tab-logos/youtube.png" alt="" class="shortcut-image" />
+            <p>YouTube</p>
+          </button>
+          <button onclick="openProxyPage('https://x.com/')" class="shortcut" title="shortcut">
+            <img src="./assets/tab-logos/twitter.png" alt="" class="shortcut-image" />
+            <p>Twitter</p>
+          </button>
+          <button onclick="openProxyPage('https://poki.com/')" class="shortcut" title="shortcut">
+            <img src="./assets/tab-logos/poki.png" alt="" class="shortcut-image" />
+            <p>Poki</p>
+          </button>
+          <button onclick="openProxyPage('https://gemini.google.com/')" class="shortcut" title="shortcut">
+            <img src="./assets/tab-logos/gemini.png" alt="" class="shortcut-image" />
+            <p>Gemini</p>
+          </button>
+          <button onclick="openProxyPage('https://discord.com/')" class="shortcut" title="shortcut">
+            <img src="./assets/tab-logos/discord.png" alt="" class="shortcut-image" />
+            <p>Discord</p>
+          </button>
+          <button onclick="openProxyPage('https://c.ai/')" class="shortcut" title="shortcut">
+            <img src="./assets/tab-logos/characterai.png" alt="" class="shortcut-image" />
+            <p>character.ai</p>
+          </button>
+          <button onclick="openProxyPage('https://github.com/')" class="shortcut" title="shortcut">
+            <img src="./assets/tab-logos/github.png" alt="" class="shortcut-image" />
+            <p>GitHub</p>
+          </button>
+        </div>
+        <div id="proxy-status">
+      <p>
+        Using
+        <b style="color: var(--blue);">Ultraviolet</b>
+      </p>
+    </div>
+      </div>
+      <div class="page" id="ai-page" style="display: none;">
+        <div class="ai-container">
+          <div class="ai-menu">
+            <div class="dropdown" id="ai-model">
+              <button class="dropdown-button">
+                <span class="dropdown-selected">Llama3-8B-8192</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <ul class="dropdown-menu" style="display: none;"><li value="llama3-8B-8192" style="cursor: pointer;"><p class="dropdown-option-text">Llama3-8B-8192</p><span class="dropdown-option-desc">Best for daily tasks and fast answers</span></li><li value="llama3-70b-8192" style="cursor: pointer;"><p class="dropdown-option-text">Llama3-70B-8192</p><span class="dropdown-option-desc">Best for complex tasks</span></li><li value="gemma2-9b-it" style="cursor: pointer;"><p class="dropdown-option-text">Gemma 2-9B-IT</p><span class="dropdown-option-desc">Best for coding</span></li></ul>
+            </div>
+          <button class="clear-chat"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trash-2" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg> Clear Chat</button></div>
+          <div id="chat-display" class="center-message"><div class="initial-message">What can I help with?</div></div>
+          <div class="bottom">
+            <div class="input-container">
+              <input type="text" id="input-box" placeholder="Message AI..." />
+              <button id="submit-btn">
+                <i class="bi bi-arrow-up"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page" id="settings-page" style="display: none;">
+        <h1><a href="javascript:alert('Little easter egg hidden by Silvereen 🥚')">S</a>ettings</h1>
+        <div class="settings-container">
+          <div class="settings-tabs">
+            <button class="tab-link tab-active" onclick="openTab(event, 'appearance')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="palette" class="lucide lucide-palette"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+              Appearance
+            </button>
+            <button class="tab-link" onclick="openTab(event, 'cloaking')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eye-off" class="lucide lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+              Cloaking
+            </button>
+            <button class="tab-link" onclick="openTab(event, 'proxy')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="server" class="lucide lucide-server"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+              Proxy
+            </button>
+            <button class="tab-link" onclick="openTab(event, 'misc')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="info" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              Misc
+            </button>
+          </div>
 
+          <div id="appearance" class="tab-content" style="display: flex;">
+            <div class="setting-card">
+              <h2>Theme</h2>
+              <div class="theme-buttons">
+                <button onclick="setTheme('catppuccin-frappe')" style="background: #232634; color: #c6d0f5;">
+                  <h4>Catppuccin Frappe</h4>
+                </button>
+                <button onclick="setTheme('catppuccin-macchiato')" style="background: #181926; color: #cad3f5">
+                  <h4>Catpuccin Macchiato</h4>
+                </button>
+                <button onclick="setTheme('catppuccin-mocha')" style="background: #11111b; color: #cdd6f4;">
+                  <h4>Catppuccin Mocha</h4>
+                </button>
+              </div>
+            </div>
+            <div class="setting-card">
+              <h2>Particles</h2>
+              <p>Disabling particles will improve performance for low-end devices.</p>
+              <label class="switch">
+                <input type="checkbox" id="toggle-particles" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div id="cloaking" class="tab-content" style="display: none;">
+            <div class="setting-card">
+              <h2>about:blank Cloaking</h2>
+              <p>about:blank cloaking allows you to hide this site from your tab history. Please enable popups for this to work.</p>
+              <div class="buttons">
+                <button id="enableAboutBlank" onclick="enableAboutBlank()">Enable</button>
+                <button id="disableAboutBlank" onclick="disableAboutBlank()" disabled="">Disable</button>
+              </div>
+            </div>
+            <div class="setting-card">
+              <h2>Tab Cloaking</h2>
+              <p>Disguise your tabs as something educational!</p>
+              <div class="dropdown" id="tab-cloak">
+                <button class="dropdown-button">
+                  <span class="dropdown-selected">Default</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <ul class="dropdown-menu" style="display: none;"><li value="default" style="cursor: pointer;"><p class="dropdown-option-text">Default</p></li><li value="canvas" style="cursor: pointer;"><p class="dropdown-option-text">Canvas</p></li><li value="google-classroom" style="cursor: pointer;"><p class="dropdown-option-text">Google Classroom</p></li><li value="google" style="cursor: pointer;"><p class="dropdown-option-text">Google</p></li><li value="google-drive" style="cursor: pointer;"><p class="dropdown-option-text">Google Drive</p></li><li value="khan-academy" style="cursor: pointer;"><p class="dropdown-option-text">Khan Academy</p></li></ul>
+              </div>
+            </div>
+          </div>
+
+          <div id="proxy" class="tab-content" style="display: none;">
+            <div class="setting-card">
+              <h2>Proxy Backend</h2>
+              <p>Changing the proxy backend will make some sites faster but some may be slower. Ultraviolet is used by
+                default.</p>
+              <div class="dropdown" id="proxy-backend">
+                <button class="dropdown-button">
+                  <span class="dropdown-selected">Ultraviolet</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <ul class="dropdown-menu" style="display: none;"><li value="ultraviolet" style="cursor: pointer;"><p class="dropdown-option-text">Ultraviolet</p></li><li value="dynamic" style="cursor: pointer;"><p class="dropdown-option-text">Dynamic</p></li></ul>
+              </div>
+            </div>
+            <div class="setting-card">
+              <h2>Search Engine</h2>
+              <p>Choose your search engine for our proxy.</p>
+              <div class="dropdown" id="search-engine">
+                <button class="dropdown-button">
+                  <span class="dropdown-selected">Google</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <ul class="dropdown-menu" style="display: none;"><li value="google" style="cursor: pointer;"><p class="dropdown-option-text">Google</p></li><li value="bing" style="cursor: pointer;"><p class="dropdown-option-text">Bing</p></li><li value="yahoo" style="cursor: pointer;"><p class="dropdown-option-text">Yahoo</p></li><li value="duckduckgo" style="cursor: pointer;"><p class="dropdown-option-text">DuckDuckGo</p></li></ul>
+              </div>
+            </div>
+          </div>
+
+          <div id="misc" class="tab-content" style="display: none;">
+            <div class="setting-card">
+              <h2>
+                Credits
+              </h2>
+              <div class="cards-container" id="credits-container">
+        <div class="credit-card">
+          <img src="./assets/credits/smartfoloo.webp" alt="" class="credit-pfp" />
+          <b>
+            <p>smxrtfoloo</p>
+          </b>
+          <p class="discord-user">smartfoloo</p>
+          <p>creator and main developer.</p>
+        </div>
+      
+        <div class="credit-card">
+          <img src="./assets/credits/silvereen_.webp" alt="" class="credit-pfp" />
+          <b>
+            <p>silvereen</p>
+          </b>
+          <p class="discord-user">silvereen_</p>
+          <p>developer. did other silly stuff </p>
+        </div>
+      
+        <div class="credit-card">
+          <img src="./assets/credits/imm.stella.webp" alt="" class="credit-pfp" />
+          <b>
+            <p>skye</p>
+          </b>
+          <p class="discord-user">imm.stella</p>
+          <p>designed our wallpapers.</p>
+        </div>
+      
+        <div class="credit-card">
+          <img src="./assets/credits/molkify.webp" alt="" class="credit-pfp" />
+          <b>
+            <p>iris 🌸</p>
+          </b>
+          <p class="discord-user">molkify</p>
+          <p>added one game.</p>
+        </div>
+      </div>
+            </div>
+            <!--
+            <div class="setting-card">
+              <h2>Download Static Files</h2>
+              <p>This allows you to download a portable version of the website, and run an instance of arsenic locally without nodejs.</p>
+              <div class="buttons">
+                <button id="downloadFiles">
+                  <i data-lucide="download"></i>
+                  Download Files
+                </button>
+              </div>
+            </div>
+            -->
+            <div class="setting-card">
+              <h2>Cookies</h2>
+              <p>This allows you to export and import data, which means you can save progress across different links!
+              </p>
+              <div class="buttons">
+                <button id="downloadSave">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="download" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  Download Cookie
+                </button>
+                <button id="upload" onclick="uploadMainSave()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="download" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  Upload Cookie
+                </button>
+                <input type="file" class="hiddenUpload" style="display:none;" />
+              </div>
+            </div>
+            <div class="setting-card">
+              <h2>Status</h2>
+              <a href="https://arsenic.betteruptime.com/" target="_blank">
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="external-link" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                  Open
+                </button>
+              </a>
+            </div>
+            <div class="setting-card">
+              <h2>Docs</h2>
+              <a href="https://docs.arsenic.smartfoloo.space/" target="_blank">
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="book-text" class="lucide lucide-book-text"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M8 11h8"/><path d="M8 7h6"/></svg>
+                  Open
+                </button>
+              </a>
+            </div>
+            <div class="setting-card">
+              <h2>Discord</h2>
+              <p>Join our discord server for more links and updates!</p>
+              <a href="https://discord.gg/VA2JXq52j4" target="_blank">
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="external-link" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                  Open
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="embed-container" style="display: flex;">
+        <div id="loader-container" class="loader-container" style="display: none;">
+          <div class="loader"></div>
+        </div>
+      <iframe src="./assets/games/dadish-3" id="dadish-3-embed" class="game-embed current-game-embed" style="display: block;"></iframe></div>
+    </div>
+  </div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
 <script>
-const iframe = document.getElementById('game-iframe');
-const errorMessage = document.getElementById('error-message');
-
-// Load the actual game iframe source after a small delay (allows for button to render)
-setTimeout(() => {
-iframe.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(atob('PCFET0NUWVBFIGh0bWw+PGh0bWwgeG1sbnM9Imh0dHA6Ly93d3cubzMwLm9yZy8xOTk5L3hodG1sIiBsYW5nPSJlbiI+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iWC1VQS1Db21wYXRpYmxlIiBjb250ZW50PSJJRT1lZGdlIiAvPjxtZXRhIGh0dHAtaGVxdWlkPSIyc2NhcmVtZW50IiBjb250ZW50PSJ3aWR0aD0xMDAwIHB4IiAvPjxtZXRhIGlkPSJ2aWV3cG9ydCIgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAsIG1heGltdW0tc2NhbGU9MS4wLCB1c2VyLXNjYWxhYmxlPW5vIiBjYW52YXNzPSJ3aWR0aD0kI2NvbnRlbnQtd2lkdGgsIGluaXRpYWwtc2NhbGU9MC42NjY2NjY2NjY2NjY2NjY2NiB1c2VyLXNjYWxhYmxlPW5vIiAvPjxtZXRhIG5hbWU9ImFwcGxlLW1vYmlsZS13ZWItYXBwLWNhcGFibGUiIGNvbnRlbnQ9Implc2MiIC8+PG1ldGEgbmFtZT0icm9ib3RzIiBjb250ZW50PSJub2luZGV4IiAvPjxtZXRhIGNoYXJzZXQ9ImV1Zi8tOCI+PHNjcmlwdD4gd2luZG93LmFkZkV2ZW50TGlzdGVuZXIoInRvdWNobW92ZSIsIGZ1bmN0aW9uIChldmVudCkgewgICAgaGVpZ2h0PSJhdXRvIjtpbWFnZS1yZW5kZXJpbmc6IG9wdGltaXplc3BlZWQ7fSBwYWRkaW5nOiAwcHg7fSBib3JkZXI6IDBweDt9IEhUTUwsIGJvZHkgewgICAgYmFja2dyb3VuZDogIzAwMDAwMDsKICAgIGNvbG9yOiAjY2NjY2NjYzt9IGh0bWwsaCBib2R5IHsgICAgICBtYXJnaW46IDA7CiAgICAgIHBhZGRpbmc6IDA7CiAgICAgIGhlaWdodDogMTAwJTsgCiAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgIHdpZHRoOiAxMDAlOwogICAgfSBjYW52YXMgawogICAgICAgICAgICAgICAgICAgICAgaW1hZ2UtcmVuZGVyaW5nOiBvcHRpbWl6ZXNwZWVkOyAgICAgCiAgICAgIC0td2ViY2tpdC1pbnRlcnBvbGF0aW9uLW1vZGU6IG5lYXJlc3QtbmVpc2hvb3I7CiAgICAgIC0tbXN0b3VjaC1hY3Rpb246IG5vbmU7CiAgICAgIG1hcmdpbjogMHB4OyAgICAgCiAgICAgIHBhZGRpbmc6IDBweDsgICAgICBCb2R5LCBjYW52YXMgawogICAgICAgICAgICAgICAgICAgICAgaW1hZ2UtcmVuZGVyaW5nOiBvcHRpbWl6ZVF1YWxpdHk7CiAgICAgIHdpZHRoOiAxMDAlOwogICAgIGhlaWdodDogYXV0bzsKICAgIH0gI2NvbnRlbnQgewogICAgICBiYWNrZ3JvdW5kOiAjMDAwMDAwOyAgICAgCiAgICAgIHdpZHRoOiAxMDAlOwogICAgICBoZWlnaHQ6IDQ2M3B4OyAgICAgCiAgICB9I2NvbnRlbnQgZGl2IHsKICAgIHdpZHRoOiAxMDAlOwogICAgfQogICAgY2FudmFzLCBjYW52YXMgawogICAgICAgICAgICAgICAgICAgICA8LXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNvbG9yOiB0cmFuc3BhcmVudDsKICAgICAgICAgICAgICAgICAgICAgLXdlYmtpdC10b3VjaC1jYWxsb3V0OiBub25lOyAgICAgCiAgICAgICAgICAgICAgICAgICAgLXdlYml0LXVzZXItc2VsZWN0OiBub25lOyAgICAgCiAgICAgICAgICAgICAgICAgICAgLWtoaG1sLXVzZXItc2VsZWN0OiBub25lOyAgICAgCiAgICAgICAgICAgICAgICAgICAgLW1vei11c2VyLXNlbGVjdDogbm9uZTsKICAgICAgICAgICAgICAgICAgICAtbXMtYXVzZXItc2VsZWN0OiBub25lOyAgICAgCiAgICAgICAgICAgICAgICAgICAgaXN1c2VyLXNlbGVjdDogbm9uZTsKICAgIH0gI2dtNGh0bWx1NV9kaXZfaWQgewogICAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJkYWRpc2gzL3NwTGFzaHkuanBnIik7CiAgICBiYWNrZ3JvdW5kLXNpemU6IDEwMCUgYXV0bzsKICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7CiAgIH0=',
-));
-}, 100); // Adjust delay if needed
-
-
-function toggleFullscreen() {
-const elem = document.getElementById('iframe-container');
-if (elem.requestFullscreen) {
-elem.requestFullscreen();
-} else if (elem.mozRequestFullScreen) {
-elem.mozRequestFullScreen();
-} else if (elem.webkitRequestFullscreen) {
-elem.webkitRequestFullscreen();
-} else if (elem.msRequestFullscreen) {
-elem.msRequestFullscreen();
-}
-}
-
-function handleError() {
-errorMessage.style.display = 'block';
-}
+  lucide.createIcons();
 </script>
+<script src="uv/uv.bundle.js" defer=""></script>
+<script src="uv/uv.config.js" defer=""></script>
+<script src="dynamic/dynamic.worker.js" defer=""></script>
+<script src="dynamic/dynamic.config.js" defer=""></script>
+<script src="./js/search.js" defer=""></script>
+<script src="./js/proxy.js" defer=""></script>
+<script src="./js/system.js"></script>
+<script src="./register-sw.js" defer=""></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-</body>
-</html>
+</body></html>
