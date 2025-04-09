@@ -16,14 +16,15 @@ margin: 0;
 <script>
 document.addEventListener('keydown', function(event) {
 if (event.key === 'k' || event.key === 'K') {
-openIndexInIframe();
+openMainInIframe();
 }
 });
 
-function openIndexInIframe() {
+function openMainInIframe() {
 let newWindow = window.open('', '_blank');
 newWindow.document.write('<html><head><title>This is not a proxy</title></head><body><iframe src="main.html" width="1300" height="600"></iframe></body></html>');
 newWindow.document.close();
+}
 </script>
 </body>
 </html>
