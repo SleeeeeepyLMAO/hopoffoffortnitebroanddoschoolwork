@@ -9,10 +9,17 @@ justify-content: center;
 align-items: center;
 height: 100vh;
 margin: 0;
+font-family: sans-serif; /* Add a simple font for better readability */
 }
+.message {
+text-align: center; /* Center the text horizontally */
+font-size: 2em; /* Make the text larger */
+}
+
 </style>
 </head>
 <body>
+<div class="message">Press K to open</div>
 <script>
 document.addEventListener('keydown', function(event) {
 if (event.key === 'k' || event.key === 'K') {
