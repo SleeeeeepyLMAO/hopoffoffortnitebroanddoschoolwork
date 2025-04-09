@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Open Tab and Redirect</title>
+<script>
+document.addEventListener('keydown', function(event) {
+if (event.key === 'k' || event.key === 'K') {
+const newTab = window.open('about:blank', '_blank');
+if (newTab) {
+setTimeout(() => {
+newTab.location.href = 'main.html';
+// Attempt to set size (likely unreliable across browsers)
+newTab.resizeTo(1280, 720); // 16:9 aspect ratio (example)
+}, 100); // Small delay for the tab to open
+}
+}
+});
+</script>
+</head>
+<body>
+</body>
+</html>
