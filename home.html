@@ -9,7 +9,8 @@ body {
 font-family: sans-serif;
 text-align: center;
 margin-top: 50px;
-color: light-blue; /* Set all text to blue */
+color: #0056b3; /* Darker blue text */
+background-color: #333; /* Dark grey background */
 }
 
 h1 {
@@ -20,13 +21,30 @@ h2 {
 font-size: 1.5em;
 margin-top: 10px;
 }
+
+.discord-button {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background-color: #555; /* Darker grey for the button */
+border: none;
+padding: 10px;
+cursor: pointer;
+}
+
+.discord-button img {
+height: 40px;
+}
 </style>
 </head>
 <body>
 <h1>This is not a proxy</h1>
-<h2>A Proxy service by Coach Chilton</h2>
-
+<h2>A Proxy service by Someone...</h2>
 <!-- Add more content here as needed -->
+
+<button class="discord-button" onclick="window.open('https://www.youtube.com', '_blank');">
+<img src="discord.png" alt="Discord">
+</button>
 
 </body>
 </html>
