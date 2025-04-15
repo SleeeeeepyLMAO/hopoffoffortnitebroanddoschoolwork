@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Lemon+Milk&display=swap" rel="stylesheet">
+    <script src="wombat-handler.js"></script>
+    <script src="proxy.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Global styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background-color: #1e1e1e;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+        }
+
+        nav .nav-item a {
+            text-decoration: none;
+            color: #f5f5f5;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        nav .nav-item a:hover {
+            background-color: #292929;
+            transform: scale(1.1);
+        }
+
+        /* Main content */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #title {
+            font-family: 'Lemon Milk', sans-serif;
+            font-size: 3rem;
+            color: #ff5252;
+            margin-bottom: 40px;
+        }
+
+        .credit-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .credit-item {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .credit-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .credit-item h3 {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .credit-item p {
+            color: #b3b3b3;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="../index.html">Home</a></li>
+            <li class="nav-item selected"><a href="../chatroom/index.html">Chatroom</a></li>
+            <li class="nav-item"><a href="../about/about.html">About</a></li>
+            <li class="nav-item"><a href="../games/index.html">Games</a></li>
+            <li class="nav-item"><a href="../proxy/proxy.html">Unblocker</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main content -->
+    <div class="main-container">
+        <div id="title">Credits & Acknowledgments</div>
+
+        <div class="credit-container">
+            <!-- EaglerCraft -->
+            <div class="credit-item">
+                <img src="../images/eaglercraft.jpg" alt="EaglerCraft">
+                <h3>EaglerCraft</h3>
+                <p>A revolutionary project that brings Minecraft to your browser with impressive performance and accessibility. Kudos to the team behind EaglerCraft!</p>
+            </div>
+
+            <!-- RepClickin -->
+            <div class="credit-item">
+                <img src="../images/rep.png" alt="RepClickin">
+                <h3>RepClickin</h3>
+                <p>contributed to the development of several scripts for the website.</p>
+            </div>
+
+            <!-- ChitChatter -->
+            <div class="credit-item">
+                <img src="../images/chitchatter.png" alt="ChitChatter">
+                <h3>ChitChatter</h3>
+                <p>A modern messaging platform where you can connect with others, chat freely, and discover new communities.</p>
+            </div>
+
+            <!-- Womginx -->
+            <div class="credit-item">
+                <img src="../images/3kho.png" alt="Womginx">
+                <h3>3kh0</h3>
+                <p> I used a large number of games from his github and added them to the website.</p>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+</html>
